@@ -21,7 +21,7 @@ RUN mkdir -pv /Sonarr /config /downloads && \
 RUN rm -rf /var/lib/apt/lists/*
 
 VOLUME /config /downloads
-EXPOSE 8989
+EXPOSE 8989 9898
 
 USER 1000:1000
 CMD ["mono", "--debug", "/Sonarr/Sonarr.exe", "-nobrowser", "-data=/config"]
