@@ -8,20 +8,16 @@ RUN apk add --no-cache \
     perl-json
 
 
-RUN apk add --no-cache --virtual=builddeps curl wget make
-RUN mkdir -p /ddclient/ /var/cache/ddclient /var/run/ddclient /config
-
-RUN curl -L http://cpanmin.us | perl - App::cpanminus && \
+ARG _VERSION=v3.9.0
+RUN apk add --no-cache --virtual=builddeps curl wget make && \
+    mkdir -p /ddclient/ /var/cache/ddclient /var/run/ddclient /config && \
+    curl -L http://cpanmin.us | perl - App::cpanminus && \
     cpanm Data::Validate::IP JSON::Any && \
     rm -rf /config/.cpanm /root/.cpanm /usr/local/bin/cpanm
-
-ARG _VERSION=v3.9.0
-
-RUN echo "This is the $_VERSION" && \
+    echo "This is the $_VERSION" && \
     curl -L "https://github.com/ddclient/ddclient/archive/${_VERSION}.tar.gz" \
-    | tar xz -C /ddclient --strip-components=1
-
-RUN apk del --purge --rdepends builddeps
+    | tar xz -C /ddclient --strip-components=1 && \
+    apk del --purge --rdepends builddeps
 
 VOLUME ["/config"]
 
