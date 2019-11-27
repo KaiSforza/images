@@ -13,7 +13,7 @@ RUN apk add --no-cache --virtual=builddeps curl wget make && \
     mkdir -p /ddclient/ /var/cache/ddclient /var/run/ddclient /config && \
     curl -L http://cpanmin.us | perl - App::cpanminus && \
     cpanm Data::Validate::IP JSON::Any && \
-    rm -rf /config/.cpanm /root/.cpanm /usr/local/bin/cpanm
+    rm -rf /config/.cpanm /root/.cpanm /usr/local/bin/cpanm && \
     echo "This is the $_VERSION" && \
     curl -L "https://github.com/ddclient/ddclient/archive/${_VERSION}.tar.gz" \
     | tar xz -C /ddclient --strip-components=1 && \
