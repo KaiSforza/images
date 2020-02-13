@@ -1,7 +1,7 @@
 FROM octopusdeploy/octo:latest
 
 RUN apk add --no-cache \
-        bash
+        bash python3
 
 ENTRYPOINT []
 
