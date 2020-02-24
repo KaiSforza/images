@@ -8,7 +8,7 @@ RUN apk add --no-cache curl && \
 
 ARG _VERSION=2.94-r2
 
-RUN apk add --no-cache transmission-daemon=$_VERSION
+RUN apk add --no-cache unrar transmission-daemon=$_VERSION
 
 EXPOSE 9091 51413
 VOLUME ["/config", "/media", "/downloads"]
